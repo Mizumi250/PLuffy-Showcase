@@ -1,0 +1,18 @@
+{
+  "engine": "5.1.0",
+  "project": "frontend",
+  "modules": [
+    {
+      "name": "pluffy-showcase",
+      "version": "1.1.0",
+      "status": "active",
+      "filePath": "tatemonos/pluffy-showcase/core.tsx",
+      "pages": [
+        "index"
+      ],
+      "registered": "2026-11-26T03:48:52.489Z",
+      "lastUpdated": "2026-11-26T13:18:24.226Z",
+      "auth": false
+    }
+  ]
+}
