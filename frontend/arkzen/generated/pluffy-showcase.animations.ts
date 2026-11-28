@@ -1,7 +1,7 @@
 // ============================================================
 // ARKZEN GENERATED ANIMATIONS — pluffy-showcase
 // DO NOT EDIT DIRECTLY. Edit the tatemono file instead.
-// Generated: 2026-11-28T11:31:48.000Z
+// Generated: 2026-11-28T15:48:31.130Z
 // ============================================================
 
 import { gsap } from 'gsap'
@@ -57,7 +57,7 @@ export const pluffyShowcaseAnimations = (pageRef: React.RefObject<HTMLDivElement
       gsap.set(q('.pf-v-home'), { autoAlpha: 0 }); gsap.set(q('.pf-v-ed, .pf-rail-i, .pf-code-l, .pf-t-l, .pf-side-new'), { autoAlpha: 1 }); gsap.set(q('.pf-dock'), { y: 0 }); setActive(hero, 'new')
     }
     root.querySelectorAll<HTMLElement>('.pf-scene .pf-win').forEach((w) => { const { q } = tools(w); gsap.set(q('.pf-to, .pf-rail-x, .pf-ex-cmd .x'), { autoAlpha: 1 }); q('.pf-tx').forEach((t) => { (t as HTMLElement).textContent = (t as HTMLElement).dataset.t ?? '' }); gsap.set(q('.pf-dock'), { y: 0 }) })
-    gsap.set('.pf-rl, .pf-rc-blk', { autoAlpha: 1 }); gsap.set('.pf-rc-cover', { autoAlpha: 0 })
+    gsap.set('.pf-rl, .pf-rc-blk, .pf-rc-wrap', { autoAlpha: 1 }); gsap.set('.pf-rc-cover', { autoAlpha: 0 })
     root.querySelectorAll('.pf-cs span').forEach((s, i, all) => s.classList.toggle('on', i === all.length - 1))
     // Pairing: show the finished state, the phone already on its Tasks screen.
     const pr = root.querySelector<HTMLElement>('#pair-phone'), pt = root.querySelector<HTMLElement>('#pair-term')
@@ -100,6 +100,7 @@ export const pluffyShowcaseAnimations = (pageRef: React.RefObject<HTMLDivElement
       ScrollTrigger.create({ trigger: '#hero-win', start: 'top bottom', end: 'bottom top', onToggle: (s) => tl.paused(!s.isActive) })
     }
     gsap.from('#hero-win', { y: 36, opacity: 0, duration: 0.9, ease: 'power3.out' })
+    gsap.from('.pf-h1 > span', { y: 56, opacity: 0, duration: 0.9, stagger: 0.12, ease: 'power3.out' })
 
     // Pairing: the laptop prints a PIN, the phone types it, then the phone drives the laptop. Loops, and pauses off screen.
     const phone = root.querySelector<HTMLElement>('#pair-phone'), pterm = root.querySelector<HTMLElement>('#pair-term')
@@ -205,11 +206,16 @@ export const pluffyShowcaseAnimations = (pageRef: React.RefObject<HTMLDivElement
       tl.to({}, { duration: 0.8 }, 8.6)
     })
 
-    // Real app: Kairo's own file builds up on the left, then the site it made is revealed on the right.
+    // Real app. First the words sit in the middle and darken as you scroll, then they leave,
+    // then Kairo's own file builds up on the left and the site it made is revealed on the right.
     scene('r', (tl, q) => {
-      tl.from(q('.pf-rl'), { autoAlpha: 0, stagger: 0.12, duration: 0.2, ease: 'none' }, 0.2)
-        .from(q('.pf-rc-blk'), { autoAlpha: 0, y: 8, stagger: 0.2, duration: 0.3 }, 2.2)
-        .to(q('.pf-rc-cover'), { scaleY: 0, duration: 1.4, ease: 'power3.inOut' }, 4.0).to({}, { duration: 1 }, 5.8)
+      tl.set(q('.pf-rc-wrap'), { autoAlpha: 0 }, 0)
+        .to(q('.pf-w'), { color: '#111111', stagger: 0.1, duration: 0.25, ease: 'none' }, 0.3)
+        .to(q('.pf-intro'), { autoAlpha: 0, y: -40, duration: 0.9 }, 6.2)
+        .fromTo(q('.pf-rc-wrap'), { y: 48 }, { autoAlpha: 1, y: 0, duration: 0.9 }, 6.9)
+        .from(q('.pf-rl'), { autoAlpha: 0, stagger: 0.12, duration: 0.2, ease: 'none' }, 7.6)
+        .from(q('.pf-rc-blk'), { autoAlpha: 0, y: 8, stagger: 0.2, duration: 0.3 }, 9.6)
+        .to(q('.pf-rc-cover'), { scaleY: 0, duration: 1.4, ease: 'power3.inOut' }, 11.4).to({}, { duration: 1 }, 13.2)
     })
 
     // Platforms and roadmap rows arrive as they are reached.

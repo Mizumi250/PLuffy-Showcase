@@ -2,7 +2,7 @@
 // ARKZEN GENERATED SHARED CONSTANTS — pluffy-showcase
 // Source: @arkzen:components (pluffy-showcase)
 // DO NOT EDIT DIRECTLY. Edit the tatemono file instead.
-// Generated: 2026-11-28T11:31:48.079Z
+// Generated: 2026-11-28T15:48:31.195Z
 // ============================================================
 
 import React, { useEffect, useRef, useState } from 'react'
@@ -18,7 +18,7 @@ export const DOWNLOAD_URL = 'https://github.com/Mizumi250/Pluffy/releases/downlo
 
 export const CLONE_CMD = 'git clone https://github.com/Mizumi250/Pluffy.git'
 
-export const FONTS_URL = 'https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700&display=swap'
+export const FONTS_URL = 'https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700&family=Inter+Tight:wght@500;600;700;800&display=swap'
 
 export const IMG_BASE = '/tatemonos/pluffy-showcase/assets/images/'
 

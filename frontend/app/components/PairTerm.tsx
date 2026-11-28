@@ -3,7 +3,7 @@
 // ARKZEN GENERATED COMPONENT — PairTerm
 // Source: @arkzen:components (pluffy-showcase)
 // DO NOT EDIT DIRECTLY. Edit the tatemono file instead.
-// Generated: 2026-11-28T11:31:48.129Z
+// Generated: 2026-11-28T15:48:31.234Z
 // ============================================================
 
 import React, { useEffect, useRef, useState } from 'react'

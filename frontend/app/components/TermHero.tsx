@@ -3,7 +3,7 @@
 // ARKZEN GENERATED COMPONENT — TermHero
 // Source: @arkzen:components (pluffy-showcase)
 // DO NOT EDIT DIRECTLY. Edit the tatemono file instead.
-// Generated: 2026-11-28T11:31:48.110Z
+// Generated: 2026-11-28T15:48:31.222Z
 // ============================================================
 
 import React, { useEffect, useRef, useState } from 'react'

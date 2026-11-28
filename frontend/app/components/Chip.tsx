@@ -3,7 +3,7 @@
 // ARKZEN GENERATED COMPONENT — Chip
 // Source: @arkzen:components (pluffy-showcase)
 // DO NOT EDIT DIRECTLY. Edit the tatemono file instead.
-// Generated: 2026-11-28T11:31:48.094Z
+// Generated: 2026-11-28T15:48:31.206Z
 // ============================================================
 
 import React, { useEffect, useRef, useState } from 'react'

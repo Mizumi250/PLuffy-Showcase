@@ -3,7 +3,7 @@
 // ARKZEN GENERATED PAGE — pluffy-showcase/index
 // Layout: guest | Auth guard: false | Guest-only: false
 // DO NOT EDIT DIRECTLY. Edit the tatemono file instead.
-// Generated: 2026-11-28T11:31:48.191Z
+// Generated: 2026-11-28T15:48:31.281Z
 // ============================================================
 
 import React, { useEffect, useRef, useState } from 'react'
@@ -31,6 +31,16 @@ import { ArrowUpRight, Building2, ChevronDown, CircleCheck, CodeXml, Copy, Downl
 const IndexPage = () => {
   const pageRef = useRef<HTMLDivElement>(null)
   const [toast, setToast] = useState('')
+  const [menu, setMenu] = useState(false)
+  const pillRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (!menu) return
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setMenu(false) }
+    const onDown = (e: PointerEvent) => { if (!pillRef.current?.contains(e.target as Node)) setMenu(false) }
+    document.addEventListener('keydown', onKey); document.addEventListener('pointerdown', onDown)
+    return () => { document.removeEventListener('keydown', onKey); document.removeEventListener('pointerdown', onDown) }
+  }, [menu])
 
   useEffect(() => {
     const link = document.createElement('link')
@@ -48,6 +58,8 @@ const IndexPage = () => {
     catch { say('Could not copy. Run: ' + CLONE_CMD) }
   }
   const PLAN = (f: string) => REPO_URL + '/blob/main/' + f
+  const NAV = [['#platforms', 'Platforms'], ['#pair', 'Pair your phone'], ['#next', 'What is coming'], ['#built', 'Built with Pluffy']]
+  const INTRO = 'This is Kairo, a 3D circuit board. All 2,298 lines live in one core.tsx. A database table, an API, the script, styles and the page sit in tagged blocks. Save, and the engine builds the site on the right.'
 
   const REAL: Array<[string | number, Array<[string, string]>]> = [
     [1, [['t', '/* ' + AZ + ':meta']]], [2, [['k', 'name: '], ['v', 'kairo']]], [3, [['k', 'version: '], ['v', '1.0.0']]],
@@ -88,16 +100,24 @@ const IndexPage = () => {
   return (
     <div ref={pageRef} className="pf-root">
       <div className="pf-wrap">
-        <header className="pf-head">
-          <a className="pf-brand" href="#top"><Mark />Pluffy</a>
-          <nav className="pf-nav" aria-label="Main">
-            <a className="pf-link" href={REPO_URL} target="_blank" rel="noreferrer">Source on GitHub</a>
-            <a className="pf-btn pf-primary" href="#download"><Download />Get Studio</a>
-          </nav>
-        </header>
+        <div className="pf-pill" ref={pillRef}>
+          <div className="pf-pill-bar">
+            <a className="pf-pill-brand" href="#top" onClick={() => setMenu(false)}><Mark />Pluffy</a>
+            <button type="button" className="pf-pill-btn" aria-label={menu ? 'Close menu' : 'Open menu'} aria-expanded={menu} aria-controls="pf-menu" onClick={() => setMenu((m) => !m)}>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><g fill="currentColor"><circle cx="5" cy="12" r="2" /><circle cx="12" cy="12" r="2" /><circle cx="19" cy="12" r="2" /></g></svg>
+            </button>
+          </div>
+          {menu && (
+            <nav className="pf-menu" id="pf-menu" aria-label="Main">
+              {NAV.map((n) => <a key={n[0]} href={n[0]} onClick={() => setMenu(false)}>{n[1]}</a>)}
+              <a href={REPO_URL} target="_blank" rel="noreferrer">Source on GitHub<ArrowUpRight /></a>
+              <a className="pri" href="#download" onClick={() => setMenu(false)}>Get Studio<Download /></a>
+            </nav>
+          )}
+        </div>
 
         <section className="pf-hero" id="top">
-          <h1 className="pf-h1">One file in, a whole building out.</h1>
+          <h1 className="pf-h1"><span>One file in,</span>{' '}<span>a whole</span>{' '}<span>building out.</span></h1>
           <p className="pf-muted">Pluffy turns one core.tsx, called a tatemono, into a database, a backend, web pages, mobile screens and a desktop shell. Studio is where you write it.</p>
           <div className="pf-cta">
             <div className="pf-cta-row">
@@ -106,22 +126,20 @@ const IndexPage = () => {
             </div>
             <p className="pf-fine">v1.0.8, Windows x64, about 246 MB. Unzip the whole folder and run it.</p>
           </div>
+          <div className="pf-hero-meta"><span className="pf-hero-year">&copy;2026</span><span className="pf-hero-tag">/One core.tsx, every platform</span></div>
           <div className="pf-stage" id="hero-win">
             <Frame dock={<TermHero />}><HomeView /><EditorView /></Frame>
           </div>
         </section>
       </div>
 
-      <section className="pf-scene" id="scene-r">
+      <section className="pf-scene pf-scene-r" id="scene-r">
         <div className="pf-wrap pf-sc-stick">
-          <div className="pf-sc-head">
+          <div className="pf-intro">
             <h2 className="pf-h2">Here is a whole app, in one file.</h2>
-            <p className="pf-cs">
-              <span className="on">This is Kairo, a 3D circuit board. All 2,298 lines live in one core.tsx.</span>
-              <span>A database table, an API, the script, styles and the page sit in tagged blocks.</span>
-              <span>Save, and the engine builds the site on the right.</span>
-            </p>
+            <p className="pf-intro-p">{INTRO.split(' ').map((w, i) => <span className="pf-w" key={i}>{w}{' '}</span>)}</p>
           </div>
+          <div className="pf-rc-wrap">
           <div className="pf-rc">
             <div className="pf-card pf-rc-code" aria-label="The opening lines and block list of the Kairo tatemono">
               <div className="pf-rc-bar">tatemonos/kairo/core.tsx, 2,298 lines</div>
@@ -138,6 +156,7 @@ const IndexPage = () => {
               <div className="pf-rc-img"><img src={IMG_BASE + 'built-kairo.webp'} alt="The Kairo site, built from that file" /><div className="pf-rc-cover" /></div>
               <figcaption>Kairo, built from the file on the left.</figcaption>
             </figure>
+          </div>
           </div>
         </div>
       </section>
@@ -156,10 +175,13 @@ const IndexPage = () => {
 
           {n === 0 && (
             <section className="pf-wrap pf-section" id="platforms">
-              <div className="pf-sec-head">
-                <span className="pf-badge ready">Ready today</span>
-                <h2 className="pf-h2">One tatemono, every place it runs.</h2>
-                <p className="pf-muted">Pick a stack and the same file runs on it. Some backends are further along than others, and the repo keeps a checklist of the gaps.</p>
+              <div className="pf-sec-row">
+                <div className="pf-sec-head">
+                  <span className="pf-badge ready">Ready today</span>
+                  <h2 className="pf-h2">One tatemono, every place it runs.</h2>
+                  <p className="pf-muted">Pick a stack and the same file runs on it. Some backends are further along than others, and the repo keeps a checklist of the gaps.</p>
+                </div>
+                <a className="pf-vlink" href={PLAN('BACKEND_PARITY_CHECKLIST.md')} target="_blank" rel="noreferrer">Backend parity checklist<i><ArrowUpRight /></i></a>
               </div>
               <div className="pf-card pf-plat">
                 {platforms.map((p) => (
@@ -169,7 +191,6 @@ const IndexPage = () => {
                   </div>
                 ))}
               </div>
-              <p className="pf-note"><a className="pf-link" href={PLAN('BACKEND_PARITY_CHECKLIST.md')} target="_blank" rel="noreferrer">Read the backend parity checklist<ArrowUpRight /></a></p>
             </section>
           )}
 

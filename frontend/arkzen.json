@@ -4,14 +4,14 @@
   "modules": [
     {
       "name": "pluffy-showcase",
-      "version": "1.4.3",
+      "version": "1.5.0",
       "status": "active",
       "filePath": "tatemonos/pluffy-showcase/core.tsx",
       "pages": [
         "index"
       ],
       "registered": "2026-11-26T03:48:52.489Z",
-      "lastUpdated": "2026-11-28T11:31:48.491Z",
+      "lastUpdated": "2026-11-28T15:48:31.514Z",
       "auth": false
     }
   ]
